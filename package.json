@@ -19,6 +19,7 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "craig-lint",
+    "typeCheck": "tsc --noEmit",
     "force-build": "rm -rf lib && craig-multi-module && tsc --declaration --emitDeclarationOnly --outDir ./lib/types",
     "build": "npm run lint && npm run test && npm run force-build",
     "test": "vitest"

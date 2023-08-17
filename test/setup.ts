@@ -24,3 +24,5 @@ vi.mock('keycloak-js', async () => {
 		default: mock.MockKeycloak
 	};
 });
+
+export const foo = '';
