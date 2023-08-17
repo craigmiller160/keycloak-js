@@ -1,12 +1,29 @@
 {
-  "name": "keycloak-js",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "@craigmiller160/keycloak-js",
+  "version": "1.0.0-beta",
+  "sideEffects": false,
+  "author": "craigmiller160",
+  "publishConfig": {
+    "registry": "https://nexus-craigmiller160.ddns.net/repository/npm-private/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "craig-lint",
+    "force-build": "rm -rf lib && craig-multi-module && tsc --declaration --emitDeclarationOnly --outDir ./lib/types",
+    "build": "npm run lint && npm run test && npm run force-build",
+    "test": "vitest"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "craig-lint"
+  }
 }
