@@ -25,5 +25,13 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "craig-lint"
+  },
+  "devDependencies": {
+    "@craigmiller160/babel-config": "^1.1.1",
+    "@craigmiller160/eslint-config-js": "^1.3.0",
+    "@craigmiller160/eslint-config-prettier": "^1.0.2",
+    "@craigmiller160/eslint-config-ts": "^1.1.3",
+    "@craigmiller160/prettier-config": "^1.0.2",
+    "typescript": "^5.1.6"
   }
 }
