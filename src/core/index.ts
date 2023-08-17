@@ -1,20 +1,20 @@
 import {
 	AuthorizeWithKeycloak,
 	CreateKeycloakAuthorization,
+	isInternalConfig,
 	KeycloakAuthConfig,
 	KeycloakAuthFailedHandler,
 	KeycloakAuthSuccessHandler,
 	RequiredRoles
 } from './types';
 import Keycloak, { KeycloakError } from 'keycloak-js';
-import { newDate } from '../utils/newDate';
+import { navigate, newDate } from '../utils';
 import {
 	ACCESS_DENIED_ERROR,
 	ACCESS_DENIED_URL,
 	AUTH_SERVER_URL,
 	REFRESH_ERROR
 } from './constants';
-import { navigate } from '../utils/navigate';
 
 const hasRequiredRoles = (
 	keycloak: Keycloak,
@@ -56,7 +56,7 @@ const createHandleOnSuccess =
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		onSuccess(keycloak.token!, keycloak.tokenParsed!);
 
-		const current = newDate().getTime();
+		const current = getNewDate(config)().getTime();
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const exp = keycloak.tokenParsed!.exp! * 1000;
 
@@ -65,6 +65,20 @@ const createHandleOnSuccess =
 			setTimeout(() => keycloak.updateToken(40), exp - current - 30_000);
 		}
 	};
+
+const getNavigate = (config: KeycloakAuthConfig) => {
+	if (isInternalConfig(config)) {
+		return config.navigate ?? navigate;
+	}
+	return navigate;
+};
+
+const getNewDate = (config: KeycloakAuthConfig) => {
+	if (isInternalConfig(config)) {
+		return config.newDate ?? newDate;
+	}
+	return newDate;
+};
 
 const createHandleOnFailure =
 	(keycloak: Keycloak, config: KeycloakAuthConfig) =>
@@ -83,7 +97,7 @@ const createHandleOnFailure =
 			error.error === ACCESS_DENIED_ERROR.error &&
 			doAccessDeniedRedirect
 		) {
-			navigate(accessDeniedUrl);
+			getNavigate(config)(accessDeniedUrl);
 		}
 
 		if (

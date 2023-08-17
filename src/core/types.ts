@@ -16,6 +16,19 @@ export type KeycloakAuthConfig = {
 	readonly accessDeniedUrl?: string;
 };
 
+export type InternalKeycloakOverrides = Readonly<{
+	newDate?: () => Date;
+	navigate?: (url: string) => void;
+}>;
+
+export type InternalKeycloakAuthConfig = KeycloakAuthConfig &
+	Partial<InternalKeycloakOverrides>;
+
+export const isInternalConfig = (
+	config: KeycloakAuthConfig
+): config is InternalKeycloakAuthConfig =>
+	Object.hasOwn(config, 'newDate') || Object.hasOwn(config, 'navigate');
+
 export type KeycloakAuthSuccessHandler = (
 	token: string,
 	tokenParsed: KeycloakTokenParsed
