@@ -16,9 +16,12 @@ export type KeycloakAuthConfig = {
 	readonly accessDeniedUrl?: string;
 };
 
+export type NavigateFn = (uri: string) => void;
+export type NewDateFn = () => Date;
+
 export type InternalKeycloakOverrides = Readonly<{
-	newDate?: () => Date;
-	navigate?: (url: string) => void;
+	newDate?: NewDateFn;
+	navigate?: NavigateFn;
 }>;
 
 export type InternalKeycloakAuthConfig = KeycloakAuthConfig &

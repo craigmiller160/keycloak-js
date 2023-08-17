@@ -1,14 +1,13 @@
 import {
 	AuthorizeWithKeycloak,
 	CreateKeycloakAuthorization,
-	isInternalConfig,
 	KeycloakAuthConfig,
 	KeycloakAuthFailedHandler,
 	KeycloakAuthSuccessHandler,
 	RequiredRoles
 } from './types';
 import Keycloak, { KeycloakError } from 'keycloak-js';
-import { navigate, newDate } from '../utils';
+import { getNavigate, getNewDate } from '../utils';
 import {
 	ACCESS_DENIED_ERROR,
 	ACCESS_DENIED_URL,
@@ -65,20 +64,6 @@ const createHandleOnSuccess =
 			setTimeout(() => keycloak.updateToken(40), exp - current - 30_000);
 		}
 	};
-
-const getNavigate = (config: KeycloakAuthConfig) => {
-	if (isInternalConfig(config)) {
-		return config.navigate ?? navigate;
-	}
-	return navigate;
-};
-
-const getNewDate = (config: KeycloakAuthConfig) => {
-	if (isInternalConfig(config)) {
-		return config.newDate ?? newDate;
-	}
-	return newDate;
-};
 
 const createHandleOnFailure =
 	(keycloak: Keycloak, config: KeycloakAuthConfig) =>
