@@ -11,6 +11,11 @@
       "types": "./lib/types/index.d.ts",
       "import": "./lib/esm/index.js",
       "require": "./lib/cjs/index.js"
+    },
+    "./utils/*": {
+      "types": "./lib/types/utils/*.ts",
+      "import": "./lib/esm/utils/*.js",
+      "require": "./lib/cjs/utils/*.js"
     }
   },
   "files": [
