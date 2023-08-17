@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+*.iml
+node_modules
+yarn-error.log
+.yalc
+yalc.lock
+build
+coverage
+deploy/build
+cypress/videos
+cypress/screenshots
+deploy/build
+deploy/chart/charts
+*.tgz
+deploy/terraform/.terraform/
+/lib
