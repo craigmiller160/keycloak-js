@@ -8,6 +8,7 @@ import {
 	MOCK_AUTH_SERVER_URL,
 	REALM,
 	REALM_ACCESS_ROLE,
+	TEST_DATE,
 	TOKEN,
 	TOKEN_PARSED,
 	UNAUTHORIZED_ERROR
@@ -36,8 +37,7 @@ type Result = {
 };
 
 const navigateMock = vi.fn<[string], void>();
-const date = new Date();
-const newDate = () => date;
+const newDate = () => TEST_DATE;
 
 const promisify =
 	(waitForResultCount: number) =>

@@ -1,5 +1,4 @@
 import { KeycloakError, KeycloakTokenParsed } from 'keycloak-js';
-import { newDate } from '../../src/utils/newDate';
 
 export const CLIENT_ID = 'test-client';
 export const MOCK_AUTH_SERVER_URL = 'https://auth-server.com';
@@ -11,6 +10,7 @@ export const CLIENT_ACCESS_ID = 'other-client-id';
 export const CLIENT_ACCESS_ROLE = 'client-access';
 
 export const TOKEN = 'ABCDEFG';
+export const TEST_DATE: Date = new Date();
 export const TOKEN_PARSED: KeycloakTokenParsed = {
 	sub: 'mock-token',
 	realm_access: {
@@ -21,7 +21,7 @@ export const TOKEN_PARSED: KeycloakTokenParsed = {
 			roles: [CLIENT_ACCESS_ROLE]
 		}
 	},
-	exp: newDate().getTime() / 1000 + ACCESS_TOKEN_EXP
+	exp: TEST_DATE.getTime() / 1000 + ACCESS_TOKEN_EXP
 };
 
 export const UNAUTHORIZED_ERROR: KeycloakError = {
