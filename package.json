@@ -21,7 +21,7 @@
     "lint": "craig-lint",
     "typeCheck": "tsc --noEmit --project ./test/tsconfig.json",
     "force-build": "rm -rf lib && craig-multi-module && tsc --declaration --emitDeclarationOnly --outDir ./lib/types",
-    "build": "npm run lint && npm run test && npm run force-build",
+    "build": "npm run typeCheck && npm run lint && npm run test && npm run force-build",
     "test": "vitest"
   },
   "lint-staged": {
