@@ -21,7 +21,7 @@
     "build": "c-validate && c-build-lib"
   },
   "devDependencies": {
-    "@craigmiller160/js-config": "1.0.0-beta.5",
+    "@craigmiller160/js-config": "1.0.0",
     "cross-env": "^7.0.3",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
