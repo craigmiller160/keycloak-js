@@ -90,7 +90,6 @@ export class MockKeycloak {
 		return new Promise((resolve) => resolve(authSuccess));
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	logout() {}
 
 	login() {
