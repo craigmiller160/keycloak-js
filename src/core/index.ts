@@ -48,15 +48,13 @@ const createHandleOnSuccess =
 		}
 
 		if (config.localStorageKey) {
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			localStorage.setItem(config.localStorageKey, keycloak.token!);
 		}
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		onSuccess(keycloak.token!, keycloak.tokenParsed!);
 
 		const current = getNewDate(config)().getTime();
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
 		const exp = keycloak.tokenParsed!.exp! * 1000;
 
 		const timeout = exp - current - 30_000;
@@ -89,7 +87,7 @@ const createHandleOnFailure =
 			error.error === REFRESH_ERROR.error &&
 			doLoginRedirectOnRefreshFailed
 		) {
-			keycloak.login();
+			void keycloak.login();
 		}
 
 		onFailure(error);
@@ -118,8 +116,8 @@ export const createKeycloakAuthorization: CreateKeycloakAuthorization = (
 		keycloak.onAuthRefreshError = () =>
 			handleOnFailure(onFailure)(REFRESH_ERROR);
 
-		keycloak.init({ onLoad: 'login-required' });
+		void keycloak.init({ onLoad: 'login-required' });
 	};
 
-	return [authorize, keycloak.logout];
+	return [authorize, () => keycloak.logout()];
 };

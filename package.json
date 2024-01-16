@@ -17,29 +17,17 @@
     "lib"
   ],
   "scripts": {
-    "prepare": "husky install",
-    "lint": "craig-lint",
-    "typeCheck": "tsc --noEmit --project ./test/tsconfig.json",
-    "force-build": "rm -rf lib && craig-multi-module && tsc --declaration --emitDeclarationOnly --outDir ./lib/types",
-    "build": "npm run typeCheck && npm run lint && npm run test && npm run force-build",
-    "test": "vitest"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": "craig-lint"
+    "force-build": "c-build-lib",
+    "build": "c-validate && c-build-lib"
   },
   "devDependencies": {
-    "@craigmiller160/babel-config": "^1.1.1",
-    "@craigmiller160/eslint-config-js": "^1.3.0",
-    "@craigmiller160/eslint-config-prettier": "^1.0.2",
-    "@craigmiller160/eslint-config-ts": "^1.1.3",
-    "@craigmiller160/prettier-config": "^1.0.2",
-    "@craigmiller160/swc-config": "1.0.0-beta.9",
-    "@swc/cli": "^0.1.62",
+    "@craigmiller160/js-config": "1.0.0-beta.5",
+    "cross-env": "^7.0.3",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "lint-staged": "^14.0.0",
     "typescript": "^5.1.6",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.3"
   },
   "dependencies": {
     "keycloak-js": "^20.0.3"
