@@ -1,6 +1,6 @@
 {
   "name": "@craigmiller160/keycloak-js",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "sideEffects": false,
   "author": "craigmiller160",
   "publishConfig": {
