@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-lint-staged
+./node_modules/.pnpm/lint-staged@14.0.1/node_modules/lint-staged/bin/lint-staged.js --config ./node_modules/@craigmiller160/js-config/configs/lintstaged/.lintstagedrc
